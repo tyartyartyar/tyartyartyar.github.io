@@ -1,0 +1,81 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth; /* Smooth scrolling behavior */
+}
+
+header {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+h1 {
+  margin: 10px 0;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* About Section */
+#about {
+  background-color: #f0f0f0;
+  padding: 50px;
+}
+
+/* Products Section */
+#products {
+  background-color: #ffffff;
+  padding: 50px;
+}
+
+/* Parallax Section */
+.parallax {
+  background-image: url('background.jpg'); /* Change 'background.jpg' to your image path */
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 50px;
+}
+
+/* Contact Section */
+#contact {
+  background-color: #f0f0f0;
+  padding: 50px;
+}
+
+/* Footer Section */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
