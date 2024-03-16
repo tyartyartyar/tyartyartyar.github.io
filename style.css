@@ -7,17 +7,17 @@ body,
   height: 100%;
 }
 
-body {
-  padding-top: 50px;
-}
-
-
 /*** Navigation ***/
 
 .navbar {
   margin-bottom: 0;
-  padding: 0 15px;
+  padding: 5px 15px;
   background: #4EB086;
+}
+
+.navbar-toggler {
+  border-color: transparent !important;
+  padding: 0;
 }
 
 .navbar-default .navbar-brand,
@@ -77,6 +77,10 @@ ul.nav.navbar-nav.navbar-right li a:hover {
   .navbar-default .navbar-brand {
     font-size: 1em;
   }
+}
+
+.navbar-default {
+  border-color: transparent;
 }
 
 td {

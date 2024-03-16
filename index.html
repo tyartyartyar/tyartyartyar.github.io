@@ -6,24 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle glyphicon glyphicon-menu-hamburger" data-toggle="collapse"
-                    data-target="#navbar"></button>
-                <a class="navbar-brand" href="#">Peta Kawasan Konservasi</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- <li><a id="addJQ" href="#">jQuery getJSON</a></li> -->
-                    <li><a id="addVanillaJS" href="#">Tampilkan Layer</a></li>
-                    <li><a id="removeLayer" href="#">Remove Layer</a></li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <a class="navbar-brand" href="#">
+                <img src="https://ksdae.menlhk.go.id/assets/images/logo.png" width="30" height="30" alt="">
+            </a>
+            <a class="navbar-brand" href="#">Peta Kawasan Konservasi</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+                <ul class="navbar-nav pull-right">
+                    <li><a class="nav-link" id="addVanillaJS" href="#">Tampilkan Layer</a></li>
+                    <li><a class="nav-link" id="removeLayer" href="#">Remove Layer</a></li>
                 </ul>
             </div>
         </nav>
@@ -35,8 +39,10 @@
     </section>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://makinacorpus.github.io/Leaflet.Spin/docs/spin/dist/spin.min.js"></script>
+    <script src="https://makinacorpus.github.io/Leaflet.Spin/docs/leaflet.spin.min.js"></script>
     <script src="index.js"></script>
 </body>
 
