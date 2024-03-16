@@ -70,6 +70,12 @@ ul.nav.navbar-nav.navbar-right li a:hover {
   font-weight: bold;
 }
 
+/*** Map control ***/
+
+.leaflet-top .leaflet-control {
+  margin-top: 6em;
+}
+
 
 /*** Control font size of title on small screens ***/
 
