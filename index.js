@@ -52,7 +52,6 @@ const addDataFetch = () => {
   map.spin(true, SpinnerOpts);
   fetch(geoJsonUrl)
     .then((response) => {
-      console.log(response);
       return response.json();
     })
     .then(function (data) {
@@ -86,27 +85,25 @@ const myStyle = (feature) => {
     fillOpacity: 0.3,
   };
 
-  if ("CA" == feature.properties.Fungsi_kk) {
-    return { ...defaultStyle, fillColor: "#ffa500" };
+  switch (feature.properties.Fungsi_kk) {
+    case "CA":
+      return { ...defaultStyle, fillColor: "#ffa500" };
+    case "SM":
+      return { ...defaultStyle, fillColor: "#ffff00" };
+    case "TB":
+      return { ...defaultStyle, fillColor: "#a52a2a" };
+    case "TN":
+      return { ...defaultStyle, fillColor: "#ff0000" };
+    case "TWA":
+      return { ...defaultStyle, fillColor: "#00f" };
+    case "KSA/KPA":
+      return { ...defaultStyle, fillColor: "#800080" };
+    case "Tahura":
+      return { ...defaultStyle, fillColor: "#808080" };
+    default:
+      return { ...defaultStyle, fillColor: "#808080" };
   }
-  if ("SM" == feature.properties.Fungsi_kk) {
-    return { ...defaultStyle, fillColor: "#ffff00" };
-  }
-  if ("TB" == feature.properties.Fungsi_kk) {
-    return { ...defaultStyle, fillColor: "#a52a2a" };
-  }
-  if ("TN" == feature.properties.Fungsi_kk) {
-    return { ...defaultStyle, fillColor: "#ff0000" };
-  }
-  if ("TWA" == feature.properties.Fungsi_kk) {
-    return { ...defaultStyle, fillColor: "#00f" };
-  }
-  if ("KSA/KPA" == feature.properties.Fungsi_kk) {
-    return { ...defaultStyle, fillColor: "#800080" };
-  }
-  if ("Tahura" == feature.properties.Fungsi_kk) {
-    return { ...defaultStyle, fillColor: "#808080" };
-  }
+
 };
 
 const highlightFeature = (e) => {
@@ -189,11 +186,61 @@ const removeLayerFromMap = () => {
   }
 };
 
+const coord3857To4326 = (coord) => {
+    
+  const e_value = 2.7182818284;
+  const X = 20037508.34;
+  
+  const lat3857 = coord[1]
+  const long3857 = coord[0];
+  
+  //converting the longitute from epsg 3857 to 4326
+  const long4326 = (long3857*180)/X;
+  
+  //converting the latitude from epsg 3857 to 4326 split in multiple lines for readability        
+  let lat4326 = lat3857/(X / 180);
+  const exponent = (Math.PI / 180) * lat4326;
+  
+  lat4326 = Math.atan(Math.pow(e_value, exponent));
+  lat4326 = lat4326 / (Math.PI / 360); // Here is the fixed line
+  lat4326 = lat4326 - 90;
+
+  if(isNaN(lat4326) || isNaN(long4326)) {
+    console.error("🚀 ~ parameter error coord3857To4326");
+  }
+
+  return [long4326, lat4326];
+  
+}
+
 /*** Event Handlers ***/
 // Add layer with XMLHttpRequest()
 // tied to <a id="addVanillaJS">
 var addVanillaJS = document.getElementById("addVanillaJS");
 addVanillaJS.addEventListener("click", addDataFetch);
+
+const loadGetaciLayer = () => {
+  map.spin(true, SpinnerOpts);
+  fetch("jbh_2023.geojson")
+    .then(response => {
+      return response.json()
+    }).then(data => {
+      data.features.forEach(e => { 
+        e.geometry.coordinates = e.geometry.coordinates.map(f => coord3857To4326(f));
+      });
+
+      map.panTo(new L.LatLng(-6.948416, 107.722791));
+      map.setZoom(10);
+      L.geoJson(data).addTo(map);
+      map.spin(false);
+    }).catch(error => {
+      console.error("🚀 ~ error:", error)
+      map.spin(false);
+    })
+}
+
+// Load Getaci Map
+document.getElementById("load-getaci-layer").addEventListener("click", loadGetaciLayer);
 
 // Remove layer from map
 // tied to <a id="removeLayer">
